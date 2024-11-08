@@ -1,0 +1,19 @@
+{
+
+  "version": 1,
+
+  "name": "videos-api",
+
+  "builds": [
+
+    { "src": "src/index.ts", "use": "@vercel/node" }
+
+  ],
+
+  "routes": [
+
+    { "src": "/(.*)", "dest": "src/index.ts" }
+
+  ]
+
+}

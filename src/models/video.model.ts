@@ -37,7 +37,7 @@ export class VideoModel {
         }
 
         if (video.availableResolutions != null) {
-            if (!Array.isArray(video.availableResolutions) || video.availableResolutions.length === 0) {
+            if (!Array.isArray(video.availableResolutions) || video.availableResolutions.length === 0 || video.availableResolutions.find(p => !Resolutions[p])) {
                 errors.errorsMessages.push({message: "At least one resolution should be added", field: 'availableResolutions'});
             }
         }
@@ -52,7 +52,7 @@ export class VideoModel {
         }
 
         if (!video.author || video.author.length > 20 || !video.author.trim()) {
-            errors.errorsMessages.push({message: "Description is not valid", field: 'author'});
+            errors.errorsMessages.push({message: "Author is not valid", field: 'author'});
         }
 
         if (video.availableResolutions != null) {
@@ -79,7 +79,7 @@ export class VideoModel {
 
         if (video.publicationDate) {
             const publicationDate = new Date(video.publicationDate);
-            if (isNaN(publicationDate.getTime())) {
+            if (isNaN(publicationDate.getTime()) || !(publicationDate.toISOString() === video.publicationDate) ) {
                 errors.errorsMessages.push({message: "Value must be a valid date-time string.", field: 'publicationDate'});
             }
         }

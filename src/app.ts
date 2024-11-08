@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import videosRouter from "./routes/video.routes";
 import {SETTINGS} from "./settings";
+import testingRouter from "./routes/testing";
 
 export const app = express()
 app.use(express.json())
@@ -12,4 +13,4 @@ app.get('/', (req, res) => {
 })
 app.use(SETTINGS.PATH.VIDEOS, videosRouter)
 
-app.use(SETTINGS.PATH.TESTING, videosRouter)
+app.use(SETTINGS.PATH.TESTING, testingRouter)

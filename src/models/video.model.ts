@@ -28,12 +28,12 @@ export type ErrorType = {
 export class VideoModel {
     static validatePost(video: VideoDBType): ErrorType[] {
         let errors: ErrorType[] = [];
-        if (!video.title || video.title.length > 40 || !video.title.trim()) {
+        if (!video.title || video.title.length > 40 || !video.title.trim() || video.title === null) {
             errors.push({errorsMessages: [{message: "Title is required and must be a string.", field: 'title'}]});
         }
 
-        if (!video.author || video.author.length > 20 || !video.author.trim()) {
-            errors.push({errorsMessages: [{message: "Description is required and must be a string.", field: 'author'}]});
+        if (!video.author || video.author.length > 20 || !video.author.trim() || video.author === null) {
+            errors.push({errorsMessages: [{message: "Author is required and must be valid.", field: 'author'}]});
         }
 
         if (video.availableResolutions != null) {

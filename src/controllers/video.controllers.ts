@@ -1,7 +1,7 @@
 import {Request, Response} from 'express'
 import {db} from "../db/db";
 import {SETTINGS} from "../settings";
-import {ErrorType, VideoModel} from "../models/video.model";
+import {ErrorsType, VideoModel} from "../models/video.model";
 import {VideoDBType} from "../db/video-db-type";
 
 
@@ -25,10 +25,9 @@ export const getVideoById = (req: Request, res: Response) => {
 };
 
 export const createVideo = (req: Request, res: Response) => {
-    const errors: ErrorType[] = VideoModel.validatePost(req.body);
-    if (errors.length > 0) {
-        const firstOccuredError: ErrorType = errors[0];
-        res.status(SETTINGS.HTTP_CODES.HTTP_400).json(firstOccuredError);
+    const errors: ErrorsType = VideoModel.validatePost(req.body);
+    if (errors.errorsMessages.length > 0) {
+        res.status(SETTINGS.HTTP_CODES.HTTP_400).json(errors);
         return;
     }
     const  newVideo: VideoDBType = VideoModel.create(req.body);
@@ -44,10 +43,9 @@ export const updateVideo = (req: Request, res: Response) => {
         return;
     }
 
-    const errors: ErrorType[] = VideoModel.validatePut(req.body);
-    if (errors.length > 0) {
-        const firstOccuredError: ErrorType = errors[0];
-        res.status(SETTINGS.HTTP_CODES.HTTP_400).json(firstOccuredError);
+    const errors: ErrorsType = VideoModel.validatePut(req.body);
+    if (errors.errorsMessages.length > 0) {
+        res.status(SETTINGS.HTTP_CODES.HTTP_400).json(errors);
         return;
     }
 

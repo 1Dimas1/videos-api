@@ -1,10 +1,8 @@
 import {req} from './test.helpers'
 import {SETTINGS} from '../src/settings'
 import {setDB} from "../src/db/db";
-import {dataset1, video1} from "./datasets";
+import {dataset1} from "./datasets";
 import {VideoDBType} from "../src/db/video-db-type";
-import {response} from "express";
-import videoRoutes from "../src/routes/video.routes";
 
 describe('/videos', () => {
     beforeEach(async () => {

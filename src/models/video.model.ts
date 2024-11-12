@@ -109,9 +109,9 @@ export class VideoModel {
     static update(videoToUpdate: VideoDBType, videoUpdatedData: UpdateVideoViewType) {
         videoToUpdate.title = videoUpdatedData.title;
         videoToUpdate.author = videoUpdatedData.author;
-        videoToUpdate.canBeDownloaded = videoUpdatedData.canBeDownloaded;
-        videoToUpdate.minAgeRestriction =  videoUpdatedData.minAgeRestriction;
-        videoToUpdate.publicationDate = videoUpdatedData.publicationDate;
-        videoToUpdate.availableResolutions = videoUpdatedData.availableResolutions;
+        videoToUpdate.canBeDownloaded = videoUpdatedData.canBeDownloaded || videoToUpdate.canBeDownloaded;
+        videoToUpdate.minAgeRestriction =  videoUpdatedData.minAgeRestriction || videoToUpdate.minAgeRestriction;
+        videoToUpdate.publicationDate = videoUpdatedData.publicationDate || videoToUpdate.publicationDate;
+        videoToUpdate.availableResolutions = videoUpdatedData.availableResolutions || videoToUpdate.availableResolutions;
     }
 }
